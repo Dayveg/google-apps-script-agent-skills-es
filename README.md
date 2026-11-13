@@ -53,6 +53,13 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 
 ## Cómo Utilizar estos Skills en tu Agente de IA
 
+### Instalación Rápida (Universal — `skills.sh`)
+Compatible con Antigravity, Claude Code, Cursor, Codex y otros agentes compatibles con `SKILL.md`:
+
+```bash
+npx skills add Dayveg/google-apps-script-agent-skills-es
+```
+
 ### En Google Antigravity
 Puedes clonar este repositorio en tu carpeta global de plugins o añadirlo como submódulo en la raíz de tu proyecto:
 
