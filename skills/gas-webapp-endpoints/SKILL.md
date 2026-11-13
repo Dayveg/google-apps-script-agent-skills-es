@@ -21,9 +21,9 @@ Al desplegar una Web App en Google Apps Script se configuran dos dimensiones ort
 ├───────────────────────────────────────────┬─────────────────────────────────────────────┤
 │ 1. Ejecutar Como (Execute As)             │ 2. Quién Tiene Acceso (Who Has Access)      │
 ├───────────────────────────────────────────┼─────────────────────────────────────────────┤
-│ • USER_DEPLOYING (Cuenta del Desarrollador):│ • ONLY_ME: Solo el creador del script.      │
-│   La Web App corre con la identidad y los │ • MY_DOMAIN: Usuarios con cuentas del      │
-│   permisos del autor. Permite actuar como │   dominio institucional (ej. @unal.edu.co). │
+│ • USER_DEPLOYING (Cuenta del Desarrollador):│ • MYSELF: Solo el creador del script.       │
+│   La Web App corre con la identidad y los │ • DOMAIN: Usuarios del mismo dominio de     │
+│   permisos del autor. Permite actuar como │   Google Workspace del desplegador.         │
 │   PROXY SEGURO para persistir en celdas   │ • ANYONE: Cualquier usuario con cuenta de   │
 │   protegidas o disparar notificaciones.   │   Google activa.                            │
 │ • USER_ACCESSING (Usuario Activo):        │ • ANYONE_ANONYMOUS: Acceso público sin      │
@@ -32,9 +32,26 @@ Al desplegar una Web App en Google Apps Script se configuran dos dimensiones ort
 └───────────────────────────────────────────┴─────────────────────────────────────────────┘
 ```
 
+Valores oficiales del manifiesto `appsscript.json` (bloque `webapp`):
+
+```json
+{
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "DOMAIN"
+  }
+}
+```
+
+* `executeAs`: `USER_DEPLOYING` | `USER_ACCESSING`.
+* `access`: `MYSELF` | `DOMAIN` | `ANYONE` | `ANYONE_ANONYMOUS`.
+
+> [!WARNING]
+> Con `executeAs: USER_DEPLOYING`, `Session.getActiveUser().getEmail()` puede devolver cadena vacía si el visitante no pertenece al dominio del desplegador. Nunca basar la autorización en un correo opcional: **fallar cerrado** cuando no se pueda identificar al usuario.
+
 > [!IMPORTANT]
 > **Patrón de Proxy Institucional para Modales Desatendidos**:
-> Cuando usuarios operativos necesitan registrar datos en una hoja de cálculo desde una ventana modal pero **no tienen permisos de edición en celdas protegidas**, la Web App debe desplegarse como `Execute as: USER_DEPLOYING` con acceso restringido a `MY_DOMAIN`. El modal realiza una petición `fetch()` a la URL canónica de la Web App, y la persistencia se ejecuta con la cuenta administrativa autorizada.
+> Cuando usuarios operativos necesitan registrar datos en una hoja de cálculo desde una ventana modal pero **no tienen permisos de edición en celdas protegidas**, la Web App debe desplegarse como `Execute as: USER_DEPLOYING` con acceso restringido a `DOMAIN`. El modal realiza una petición `fetch()` a la URL canónica de la Web App, y la persistencia se ejecuta con la cuenta administrativa autorizada.
 
 ---
 
@@ -139,13 +156,16 @@ function validarAccesoInstitucional_() {
     }
   } catch (_) {}
 
-  // Si se ejecuta en contexto anónimo o no se detecta sesión
+  // Fallar cerrado: sin identidad verificable no se autoriza la operación
   if (!email || !email.includes('@')) {
-    // Si la Web App está en modo USER_DEPLOYING para modales públicos internos, verificar token de cabecera
-    return { autorizado: true, error: null };
+    return { autorizado: false, error: 'Usuario no autenticado o no identificable.' };
   }
 
-  const DOMINIO_REQUERIDO = 'unal.edu.co';
+  // Dominio configurable en ScriptProperties (ej. 'example.edu'); sin valor, se rechaza todo acceso
+  const DOMINIO_REQUERIDO = PropertiesService.getScriptProperties().getProperty('WEBAPP_ALLOWED_DOMAIN');
+  if (!DOMINIO_REQUERIDO) {
+    return { autorizado: false, error: 'WEBAPP_ALLOWED_DOMAIN no está configurado.' };
+  }
   if (!email.endsWith(`@${DOMINIO_REQUERIDO}`)) {
     return {
       autorizado: false,

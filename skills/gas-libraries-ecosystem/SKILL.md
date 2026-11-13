@@ -104,8 +104,8 @@ function obtenerServicioOAuth2() {
 ---
 
 ### 3.2. `FirestoreGoogleAppsScript` (Base de Datos NoSQL en Tiempo Real)
-* **Repositorio**: [`gsuitedevs/apps-script-oauth2`](https://github.com/gsuitedevs) / [`rakuten-technologies/firestore-google-apps-script`](https://github.com/rakuten-technologies/firestore-google-apps-script)
-* **Script ID Oficial**: `1VUSl4b1r1eoNcRWotZM3e87ygkxvXltJdgUMALIDQI8rnAEzi1FsAqWo`
+* **Repositorio**: [`grahamearley/FirestoreGoogleAppsScript`](https://github.com/grahamearley/FirestoreGoogleAppsScript)
+* **Script ID**: `1VUSl4b1r1eoNcRWotZM3e87ygkxvXltOgyDZhixqncz9lQ3MjfT1iKFw` *(confirmar en el README del repositorio antes de usar; es la fuente canónica)*
 * **Propósito**: Conecta Google Apps Script directamente con **Google Cloud Firestore**, permitiendo leer, escribir, consultar y estructurar documentos NoSQL en la nube sin requerir Google Sheets como base de datos precaria.
 
 ```javascript
@@ -126,13 +126,14 @@ function persistirEnFirestore(coleccion, idDocumento, datos) {
 
 ### 3.3. `BatchRequest` (Procesamiento por Lotes HTTP Multipart)
 * **Autor / Repositorio**: Kanshi Tanaike ([`tanaikech/BatchRequest`](https://github.com/tanaikech/BatchRequest))
-* **Script ID**: `15hgNOdrfPt3W1tP22wngJTsEI747gn3T0un4vH2i917-R174x49Q9G89`
+* **Script ID**: consultar en el README del repositorio (no se incluye aquí para evitar identificadores desactualizados).
 * **Propósito**: Agrupa hasta 100 llamadas REST arbitrarias a APIs de Google (ej. Drive, Gmail, Calendar) en una **única petición HTTP multipart**, reduciendo drásticamente el tiempo de ejecución y evitando límites de cuota de red.
 
 ---
 
 ### 3.4. `Cheerio for Google Apps Script` (Web Scraping y Parsing DOM)
-* **Script ID**: `1ReDTpNuOeeoqV2P0x1c-3J5W_V0l5P7X7`
+* **Repositorio**: [`tani/cheeriogs`](https://github.com/tani/cheeriogs)
+* **Script ID**: `1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0`
 * **Propósito**: Proporciona la sintaxis completa de jQuery (`$`) para analizar, extraer y manipular documentos HTML recibidos vía `UrlFetchApp.fetch()`.
 
 ---

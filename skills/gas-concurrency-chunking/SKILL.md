@@ -144,7 +144,9 @@ const LockManager = Object.freeze({
 
 ## 3. Patrón de Fragmentación Masiva (*Job Chunking*)
 
-Google Apps Script cancela forzosamente cualquier ejecución que alcance los **6 minutos (360.000 ms)** mediante un *Script Timeout*.
+Google Apps Script cancela forzosamente cualquier ejecución que alcance los **6 minutos (360.000 ms)** (límite por ejecución, igual para cuentas de consumidor y Workspace).
+
+Además existe un tope **diario acumulado** de tiempo de ejecución de triggers: **90 minutos/día** en cuentas de consumidor y **6 horas/día** en Google Workspace. Un esquema de chunking con muchos triggers consume esta cuota: consultar siempre la tabla vigente en la documentación oficial de cuotas.
 
 ### Arquitectura de la Máquina de Estados:
 1. El proceso arranca y mide el tiempo transcurrido con `Date.now()`.

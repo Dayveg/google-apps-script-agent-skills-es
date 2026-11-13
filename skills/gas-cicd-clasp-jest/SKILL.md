@@ -34,19 +34,13 @@ mi-proyecto-gas/
 ## 2. Archivo `.claspignore` Canónico
 
 ```text
-# Excluir dependencias y pruebas del despliegue a Google Apps Script
-**/**
-!src/**
-!src/appsscript.json
-
+# Con "rootDir": "src" en .clasp.json, clasp solo sube el contenido de src/.
+# .claspignore se evalúa con patrones glob relativos al rootDir; excluir lo no desplegable:
+**/*.test.js
+**/__mocks__/**
+**/*.md
 node_modules/**
-tests/**
 coverage/**
-.git/**
-.github/**
-*.md
-package.json
-package-lock.json
 ```
 
 ---
@@ -125,10 +119,17 @@ jobs:
 
       - name: Despliegue automático a DEV (Solo en develop)
         if: github.ref == 'refs/heads/develop' && success()
-        env:
-          CLASPRC_ACCESS_TOKEN: ${{ secrets.CLASPRC_ACCESS_TOKEN }}
         run: |
+          # Autenticación headless: el secret contiene TODO el contenido de ~/.clasprc.json
+          echo '${{ secrets.CLASPRC_JSON }}' > ~/.clasprc.json
           cp .clasp.dev.json .clasp.json
           npx @google/clasp push --force
 ```
+
+### Autenticación en CI
+
+1. Ejecutar `npx @google/clasp login` en local (genera `~/.clasprc.json` con `token` y `oauth2ClientSettings`).
+2. Copiar el contenido completo del archivo en el secret de GitHub **`CLASPRC_JSON`** (*Settings → Secrets and variables → Actions*).
+3. Nunca versionar `.clasprc.json` (ya excluido en `.gitignore`). El token de actualización puede revocarse o caducar: si el push falla con `invalid_grant`, repetir el login local y actualizar el secret.
+4. Requisito previo: activar la **Apps Script API** en `https://script.google.com/home/usersettings` para la cuenta que despliega.
 
