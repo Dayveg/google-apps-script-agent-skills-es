@@ -1,0 +1,18 @@
+{
+  "name": "google-apps-script-agent-skills-es",
+  "version": "1.0.0",
+  "description": "Catálogo de skills y estándares de arquitectura enterprise para agentes de IA sobre Google Apps Script (GAS) en español. Basado en la documentación oficial de Google Workspace Developers.",
+  "author": "Dayana Vega (@Dayveg)",
+  "license": "CC-BY-4.0",
+  "skills": [
+    "./skills/gas-architecture-v8",
+    "./skills/gas-advanced-sheets-api",
+    "./skills/gas-advanced-drive-api",
+    "./skills/gas-triggers-lifecycle",
+    "./skills/gas-webapp-endpoints",
+    "./skills/gas-concurrency-chunking",
+    "./skills/gas-security-owasp",
+    "./skills/gas-cicd-clasp-jest",
+    "./skills/gas-libraries-ecosystem"
+  ]
+}

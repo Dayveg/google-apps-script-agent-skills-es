@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Si utilizas, adaptas o integras estos skills de Google Apps Script en tus agentes de IA o proyectos de software, por favor cita este trabajo."
+title: "Google Apps Script Enterprise Agent Skills (ES)"
+authors:
+  - family-names: "Vega"
+    given-names: "Dayana"
+    alias: "Dayveg"
+repository-code: "https://github.com/Dayveg/google-apps-script-agent-skills-es"
+url: "https://github.com/Dayveg/google-apps-script-agent-skills-es"
+keywords:
+  - "google-apps-script"
+  - "gas"
+  - "agent-skills"
+  - "antigravity"
+  - "clean-architecture"
+  - "lockservice"
+  - "owasp"
+  - "sheets-api-v4"
+  - "drive-api-v3"
+  - "clasp"
+license: "CC-BY-4.0"
+version: "1.0.0"
+date-released: "2026-11-13"
