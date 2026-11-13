@@ -17,7 +17,7 @@ description: >-
 | Scope OAuth | `https://www.googleapis.com/auth/script.send_mail` (mínimo). | `https://mail.google.com/` (acceso amplio al buzón). |
 | Recomendación | **Preferir** cuando solo se envía (menor privilegio). | Solo si se requiere leer o manipular mensajes. |
 
-Cuota diaria de destinatarios: consultar `MailApp.getRemainingDailyQuota()` y la tabla oficial de cuotas (difiere entre cuentas de consumidor y Workspace).
+Cuota diaria oficial de destinatarios: **100/día** en cuentas de consumidor (`@gmail.com`) y **1.500/día** en cuentas de Google Workspace. Verificar siempre el saldo en tiempo real con `MailApp.getRemainingDailyQuota()`.
 
 ---
 

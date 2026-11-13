@@ -113,7 +113,7 @@ Para reparar fórmulas sobrescritas con texto, mantener un **catálogo de fórmu
 
 ## 5. Filas Fantasma
 
-Hojas con miles de filas vacías al final degradan `getLastRow()` y consumen el límite de celdas del libro (10 millones de celdas por hoja de cálculo).
+Hojas con miles de filas vacías al final degradan `getLastRow()` y consumen el límite del libro (**20 millones de celdas** combinadas entre todas las pestañas o 100 MB, con un máximo de 18.278 columnas hasta `ZZZ`).
 
 ```javascript
 /**

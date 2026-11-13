@@ -16,7 +16,7 @@ description: >-
 3. Secretos en cabecera (`Authorization`, `x-api-key`), nunca en query string.
 4. Validar el esquema de la respuesta antes de usarla; una API externa es entrada no confiable.
 5. Fijar `followRedirects` según necesidad y considerar `validateHttpsCertificates` (por defecto `true`; no desactivar).
-6. Consultar la cuota diaria vigente de llamadas y el tamaño máximo de respuesta en la documentación oficial de cuotas.
+6. Cuotas oficiales de `UrlFetchApp`: **20.000 llamadas/día** (consumidor) y **100.000 llamadas/día** (Google Workspace); tamaño máximo de payload/respuesta **50 MB por llamada** y longitud máxima de URL **2 KB**.
 
 ---
 
