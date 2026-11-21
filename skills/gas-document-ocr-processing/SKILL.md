@@ -3,6 +3,8 @@ name: gas-document-ocr-processing
 description: >-
   Procesamiento OCR de PDF e imágenes en Google Apps Script con Drive API v3, extracción de campos con
   expresiones regulares validadas, limpieza de archivos temporales y control de calidad de datos extraídos.
+  Usar cuando: se extraiga texto de PDFs o imágenes en Google Drive desde Apps Script usando conversión OCR.
+  NO usar cuando: se use Tesseract, Document AI o OCR en Python/Node.js fuera de GAS.
 ---
 
 # OCR y Extracción de Datos de Documentos (`gas-document-ocr-processing`)

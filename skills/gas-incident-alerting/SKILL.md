@@ -3,6 +3,8 @@ name: gas-incident-alerting
 description: >-
   Alertas de incidentes críticos en Google Apps Script mediante Webhooks de Google Chat y correo:
   payload estructurado, deduplicación (debounce), redacción de datos sensibles y no-bloqueo del flujo principal.
+  Usar cuando: se implementen alertas de fallos o monitoreo hacia Google Chat/correo desde Google Apps Script.
+  NO usar cuando: se configure alerting en Datadog, PagerDuty, Prometheus o servicios fuera de GAS.
 ---
 
 # Alertas de Incidentes vía Webhook (`gas-incident-alerting`)

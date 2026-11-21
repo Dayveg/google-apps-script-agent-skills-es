@@ -14,6 +14,7 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 
 | Skill | Nombre Canónico | Descripción Técnica Oficial |
 | :--- | :--- | :--- |
+| **00** | [`gas-guidance`](./skills/gas-guidance/SKILL.md) | **Skill enrutadora maestra**: matriz de decisión, cuotas Workspace vs `@gmail.com`, auditoría con `gas-scan` y divulgación. |
 | **01** | [`gas-architecture-v8`](./skills/gas-architecture-v8/SKILL.md) | Topología N-Capas, motor V8 moderno, resolución de Temporal Dead Zone (TDZ), gestión de memoria/GC y contratos inmutables `ServiceResponse`. |
 | **02** | [`gas-advanced-sheets-api`](./skills/gas-advanced-sheets-api/SKILL.md) | Sheets API v4 (Servicio Avanzado), operaciones `batchGet`/`batchUpdate` masivas, formato con `GridRange` y backoff exponencial con jitter. |
 | **03** | [`gas-advanced-drive-api`](./skills/gas-advanced-drive-api/SKILL.md) | Drive API v3 (Servicio Avanzado), soporte completo de Unidades Compartidas (*Shared Drives*), paginación, carga multipart y proyección `fields`. |
@@ -31,6 +32,11 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 | **15** | [`gas-maintenance-auditor`](./skills/gas-maintenance-auditor/SKILL.md) | Auditoría programada: duplicados, errores de fórmula, filas fantasma y alertas de SLA sin borrado a ciegas. |
 | **16** | [`gas-gemini-api-integration`](./skills/gas-gemini-api-integration/SKILL.md) | Gemini API desde Apps Script: autenticación por cabecera, salida JSON estructurada, reintentos y seguridad. |
 | **17** | [`gas-document-ocr-processing`](./skills/gas-document-ocr-processing/SKILL.md) | OCR con Drive API v3, extracción de campos validada y limpieza de temporales. |
+| **18** | [`gas-workspace-addons`](./skills/gas-workspace-addons/SKILL.md) | Google Workspace Add-ons con `CardService`, manifiesto `addOns`, triggers por host y `urlFetchWhitelist`. |
+| **19** | [`gas-sheets-custom-functions`](./skills/gas-sheets-custom-functions/SKILL.md) | Funciones personalizadas en Google Sheets (`@customfunction`), matrices 2D y `AuthMode.CUSTOM_FUNCTION`. |
+| **20** | [`gas-jdbc-cloudsql`](./skills/gas-jdbc-cloudsql/SKILL.md) | Conectividad segura a Cloud SQL / SQL externo con `Jdbc`, `prepareStatement` y cierre en `finally`. |
+| **21** | [`gas-docs-slides-pdf-generation`](./skills/gas-docs-slides-pdf-generation/SKILL.md) | Generación de documentos/presentaciones desde plantillas (`DocumentApp`/`SlidesApp`), *Document Tabs* y PDF. |
+| **22** | [`gas-forms-automation`](./skills/gas-forms-automation/SKILL.md) | Automatización de Google Forms (`FormApp`) y procesamiento transaccional de `onFormSubmit` (`e.namedValues`). |
 
 ---
 
@@ -52,6 +58,22 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 ---
 
 ## Cómo Utilizar estos Skills en tu Agente de IA
+
+### Auditoría Estática Automática (`gas-scan`)
+El repositorio incluye un analizador estático sin dependencias externas para detectar antipatrones GAS (`var`, `getValue()`/`setValue()` en bucles, `<?!=` sin escapar, `waitLock` sin `finally`, scopes amplios, credenciales quemadas y `runtimeVersion` distinto de `V8`):
+
+```bash
+node scripts/gas-scan.mjs <ruta-proyecto> --json
+```
+
+Para ejecutar las pruebas unitarias y validar la integridad del catálogo:
+
+```bash
+npm test
+npm run validate
+```
+
+Consulta [`evals/evals.json`](./evals/evals.json) para los casos de evaluación de enrutamiento y cumplimiento.
 
 ### Instalación Rápida (Universal — `skills.sh`)
 Compatible con Antigravity, Claude Code, Cursor, Codex y otros agentes compatibles con `SKILL.md`:

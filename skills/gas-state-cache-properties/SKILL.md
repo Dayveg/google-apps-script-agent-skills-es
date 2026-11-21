@@ -3,6 +3,8 @@ name: gas-state-cache-properties
 description: >-
   Gestión de estado y configuración en Apps Script: PropertiesService (Script/User/Document), CacheService
   (Script/User/Document), límites oficiales, patrones de caché con invalidación y manejo de objetos JSON.
+  Usar cuando: se persistan secretos, configuración o caché temporal en PropertiesService o CacheService de GAS.
+  NO usar cuando: se use Redis, Memcached, SQLite o variables de entorno .env en servidores externos.
 ---
 
 # Estado, Configuración y Caché (`gas-state-cache-properties`)

@@ -3,6 +3,8 @@ name: gas-urlfetch-observability
 description: >-
   Consumo de APIs externas con UrlFetchApp (fetchAll, reintentos, manejo de errores HTTP, secretos) y
   observabilidad con console.* y Cloud Logging: logs estructurados, niveles, correlación y cuotas.
+  Usar cuando: se realicen peticiones HTTP externas con UrlFetchApp o se estructuren logs en Google Apps Script.
+  NO usar cuando: se use fetch/axios/requests en Node.js, navegador o Python fuera de GAS.
 ---
 
 # UrlFetchApp y Observabilidad (`gas-urlfetch-observability`)

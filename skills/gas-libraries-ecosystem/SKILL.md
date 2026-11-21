@@ -4,6 +4,8 @@ description: >-
   Compendio enciclopédico de bibliotecas y servicios para Google Apps Script: Servicios Nativos Integrados,
   Servicios Avanzados de Google (APIs v1-v4), bibliotecas canónicas de la comunidad (OAuth2, Firestore, BatchRequest)
   y paquetes npm para desarrollo profesional con Clasp y TypeScript.
+  Usar cuando: se necesite seleccionar bibliotecas, Servicios Avanzados o tipos npm (@types/google-apps-script) en GAS.
+  NO usar cuando: se seleccionen paquetes npm/PyPI para proyectos Node.js o Python sin relación con Apps Script.
 ---
 
 # Ecosistema Integral de Bibliotecas y Servicios para GAS (`gas-libraries-ecosystem`)
@@ -166,4 +168,16 @@ Para trabajar localmente en VS Code, Cursor o WebStorm con control de versiones 
 
 ### El Rol de `@types/google-apps-script`:
 Permite que el editor proporcione **autocompletado inteligente (IntelliSense)** y validación estricta de tipos en tiempo real para todos los métodos de Google Workspace (`SpreadsheetApp`, `DriveApp`, `LockService`, `Sheets`, `Drive`).
+
+---
+
+## 5. Servicios Retirados (*Sunsets* 2025–2026) — Prohibido su Uso
+
+| Servicio Retirado | Fecha de Retiro | Reemplazo Oficial |
+| :--- | :--- | :--- |
+| **`ContactsApp`** (Contacts Service) | 31 de enero de 2025 | Servicio Avanzado **`People`** (`Google People API v1`). |
+| **`AnalyticsReporting`** (Reporting API v4) | 3 de junio de 2025 | Servicio Avanzado **`AnalyticsData`** (`Google Analytics Data API v1beta`). |
+| **`Area120Tables`** | 14 de enero de 2026 | Google Sheets API v4 / Cloud SQL / Firestore. |
+| **Motor Rhino (`DEPRECATED_ES5`)** | 31 de enero de 2026 | Motor **`V8`** (`"runtimeVersion": "V8"` en `appsscript.json`). |
+
 

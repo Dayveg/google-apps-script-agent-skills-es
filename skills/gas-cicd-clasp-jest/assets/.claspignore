@@ -1,0 +1,6 @@
+**/*.test.js
+**/*.test.mjs
+**/__mocks__/**
+**/*.md
+node_modules/**
+coverage/**

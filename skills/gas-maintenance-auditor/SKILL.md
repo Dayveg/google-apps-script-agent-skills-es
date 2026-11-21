@@ -3,6 +3,8 @@ name: gas-maintenance-auditor
 description: >-
   Auditoría programada de integridad en Google Sheets con Apps Script: duplicados, fórmulas dañadas,
   filas fantasma, marcas de tiempo faltantes y alertas de SLA, con reportes sin borrado a ciegas.
+  Usar cuando: se diseñen rutinas diarias o triggers de auditoría y auto-reparación sobre hojas de cálculo en GAS.
+  NO usar cuando: se auditen bases de datos SQL, BigQuery o Dataform fuera de Google Sheets/GAS.
 ---
 
 # Auditoría y Mantenimiento Programado (`gas-maintenance-auditor`)
