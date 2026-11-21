@@ -3,11 +3,15 @@ name: gas-security-owasp
 description: >-
   Estándares de seguridad OWASP para Google Apps Script: prevención de Formula Injection,
   mitigación de XSS en HtmlService y principio de menor privilegio en appsscript.json.
+  Usar cuando: se validen entradas hacia Sheets, se renderice HTML en HtmlService o se configuren oauthScopes en GAS.
+  NO usar cuando: se audite seguridad de APIs backend Node.js/Go/Python o infraestructura cloud ajena a GAS.
 ---
 
 # Seguridad OWASP y Sanitización en GAS (`gas-security-owasp`)
 
 Esta habilidad establece las medidas de seguridad obligatorias para prevenir vulnerabilidades de **Inyección de Fórmulas (CSV/Formula Injection)**, **Cross-Site Scripting (XSS)** y exposición indebida de credenciales.
+
+> Plantilla base de manifiesto seguro disponible en [`assets/appsscript.template.json`](./assets/appsscript.template.json).
 
 ---
 
@@ -81,7 +85,14 @@ Queda prohibido el uso de scopes abiertos. El archivo `appsscript.json` debe lis
 
 ---
 
-## 4. Gestión Segura de Credenciales y Secretos
+## 4. Endurecimiento de Red y Ejecución (`urlFetchWhitelist` / `executionApi`)
+
+- **`urlFetchWhitelist`**: restringe los dominios HTTPS permitidos para `UrlFetchApp` (obligatorio en Add-ons publicados). Debe usar `https://` con dominio y ruta explícitos (ej. `"https://api.mi-dominio.com/"`).
+- **`executionApi`**: solo declarar `"executionApi": { "access": "MYSELF" }` (o `"DOMAIN"`) si el proyecto se invoca externamente vía Apps Script API; evitar `"ANYONE"`.
+
+---
+
+## 5. Gestión Segura de Credenciales y Secretos
 
 * **PROHIBIDO:** Incluir llaves de API, webhooks o contraseñas quemadas (*hardcoded*) en el código fuente.
 * **OBLIGATORIO:** Utilizar `PropertiesService.getScriptProperties()`:

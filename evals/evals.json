@@ -1,0 +1,84 @@
+{
+  "version": "1.0.0",
+  "description": "Suite de evaluación para verificar que los agentes aplican correctamente las skills de Google Apps Script.",
+  "cases": [
+    {
+      "id": "eval-01-sheets-batch-dynamic",
+      "prompt": "Crea una función en Apps Script que lea los registros de la hoja 'Solicitudes', filtre los que tienen estado 'PENDIENTE' y actualice su columna 'ESTADO' a 'PROCESADO'.",
+      "expected_skills": ["gas-guidance", "gas-architecture-v8"],
+      "must_include": ["getValues()", "setValues(", "ServiceResponse", "const "],
+      "must_not_include": ["var ", ".getValue()", ".setValue("],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-02-concurrency-lock-jitter",
+      "prompt": "Implementa un generador de consecutivos transaccional para radicados concurrentes en Google Sheets.",
+      "expected_skills": ["gas-guidance", "gas-concurrency-chunking", "gas-architecture-v8"],
+      "must_include": ["LockService", "tryLock(", "finally", "releaseLock()"],
+      "must_not_include": ["waitLock("],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-03-webapp-proxy-owasp",
+      "prompt": "Construye un endpoint doPost para recibir formularios externos y guardarlos en Sheets previniendo Formula Injection.",
+      "expected_skills": ["gas-guidance", "gas-webapp-endpoints", "gas-security-owasp"],
+      "must_include": ["doPost(e)", "ContentService", "MimeType.JSON", "sanitizar"],
+      "must_not_include": ["throw new Error("],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-04-htmlservice-xss",
+      "prompt": "Crea una plantilla HTML de HtmlService que muestre el nombre del solicitante y cargue una hoja de estilos parcial.",
+      "expected_skills": ["gas-guidance", "gas-htmlservice-ui", "gas-security-owasp"],
+      "must_include": ["<?= ", "include("],
+      "must_not_include": ["<?!= solicitante", "<?!= nombre"],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-05-negative-trigger-node",
+      "prompt": "Crea un servidor REST en Express.js con PostgreSQL y Prisma para gestionar usuarios.",
+      "expected_skills": [],
+      "must_not_trigger": ["gas-guidance", "gas-webapp-endpoints", "gas-architecture-v8"]
+    },
+    {
+      "id": "eval-06-workspace-addon-cardservice",
+      "prompt": "Construye un Google Workspace Add-on para Sheets con CardService que muestre un panel lateral con un botón de acción y su manifiesto appsscript.json.",
+      "expected_skills": ["gas-guidance", "gas-workspace-addons"],
+      "must_include": ["CardService", "newCardBuilder", "addOns", "homepageTrigger"],
+      "must_not_include": ["var "],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-07-sheets-custom-function",
+      "prompt": "Crea una función personalizada de Google Sheets llamada LIMPIAR_NIT que reciba una celda o un rango 2D y elimine caracteres no numéricos.",
+      "expected_skills": ["gas-guidance", "gas-sheets-custom-functions"],
+      "must_include": ["@customfunction", "Array.isArray("],
+      "must_not_include": ["var ", "SpreadsheetApp.openById"],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-08-jdbc-cloudsql-prepared",
+      "prompt": "Escribe una función en Apps Script que consulte una tabla de clientes por estado en Cloud SQL usando Jdbc de forma segura.",
+      "expected_skills": ["gas-guidance", "gas-jdbc-cloudsql"],
+      "must_include": ["Jdbc.getCloudSqlConnection", "prepareStatement(", "finally", ".close()"],
+      "must_not_include": ["var "],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-09-docs-template-to-pdf",
+      "prompt": "Crea una función en Apps Script que clone una plantilla de Google Docs, reemplace marcadores {{NOMBRE}} en todas las pestañas y exporte el resultado a PDF.",
+      "expected_skills": ["gas-guidance", "gas-docs-slides-pdf-generation"],
+      "must_include": ["replaceText(", "saveAndClose()", "MimeType.PDF"],
+      "must_not_include": ["var "],
+      "scan_clean": true
+    },
+    {
+      "id": "eval-10-forms-onformsubmit",
+      "prompt": "Implementa un handler instalable onFormSubmit para una hoja vinculada a Google Forms que asigne un consecutivo bajo LockService usando namedValues.",
+      "expected_skills": ["gas-guidance", "gas-forms-automation", "gas-concurrency-chunking"],
+      "must_include": ["namedValues", "Lock", "ServiceResponse"],
+      "must_not_include": ["var ", "waitLock("],
+      "scan_clean": true
+    }
+  ]
+}

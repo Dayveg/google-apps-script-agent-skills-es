@@ -18,6 +18,6 @@ keywords:
   - "sheets-api-v4"
   - "drive-api-v3"
   - "clasp"
-license: "CC-BY-4.0"
+license: "CC-BY-4.0 AND Apache-2.0"
 version: "1.0.0"
-date-released: "2026-11-13"
+date-released: "2026-11-21"

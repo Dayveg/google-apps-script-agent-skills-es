@@ -1,0 +1,41 @@
+{
+  "name": "google-apps-script-agent-skills-es",
+  "version": "1.0.0",
+  "description": "Catálogo de skills y estándares de arquitectura enterprise para agentes de IA sobre Google Apps Script (GAS) en español.",
+  "author": {
+    "name": "Dayana Vega (@Dayveg)",
+    "url": "https://github.com/Dayveg"
+  },
+  "license": "CC-BY-4.0 AND Apache-2.0",
+  "type": "module",
+  "homepage": "https://github.com/Dayveg/google-apps-script-agent-skills-es#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dayveg/google-apps-script-agent-skills-es.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dayveg/google-apps-script-agent-skills-es/issues"
+  },
+  "keywords": [
+    "google-apps-script",
+    "gas",
+    "google-workspace",
+    "agent-skills",
+    "antigravity",
+    "claude-code",
+    "cursor",
+    "codex",
+    "clasp"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "gas-scan": "scripts/gas-scan.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "scan": "node scripts/gas-scan.mjs",
+    "validate": "node scripts/validate-skills.mjs"
+  }
+}

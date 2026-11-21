@@ -3,6 +3,8 @@ name: gas-triggers-lifecycle
 description: >-
   Gobierno del ciclo de vida de disparadores (Triggers): diferencias entre triggers simples e instalables,
   control de ScriptApp.AuthMode, prevención de doble ejecución, cuotas (máx. 20) y registro idempotente.
+  Usar cuando: se creen o depuren triggers onOpen, onEdit, onFormSubmit o timeBased() en Google Apps Script.
+  NO usar cuando: se configuren cron jobs de Linux, GitHub Actions o Cloud Scheduler fuera de GAS.
 ---
 
 # Ciclo de Vida y Disparadores Oficiales (`gas-triggers-lifecycle`)
@@ -18,6 +20,7 @@ Google Apps Script ejecuta cada función de disparador bajo un contexto de segur
 | Modo de Autorización | Origen de la Invocación | Servicios Permitidos | Servicios Prohibidos |
 | :--- | :--- | :--- | :--- |
 | **`AuthMode.NONE`** | Documento abierto por usuario anónimo / sin sesión. | Ninguno. Acceso de solo lectura nulo. | Cualquier llamada a Google APIs falla de inmediato. |
+| **`AuthMode.CUSTOM_FUNCTION`** | Fórmula personalizada en celda (`=MI_FUNCION()`). | Cálculo en memoria, `CacheService`, `UrlFetchApp` (solo endpoints públicos sin credenciales de usuario). | `GmailApp`, `MailApp`, `DriveApp`, `SpreadsheetApp.openById()`, mutación de celdas o menús. |
 | **`AuthMode.LIMITED`** | Disparadores simples (`onEdit`, `onOpen`). | Solo el archivo contenedor activo (`SpreadsheetApp.getActiveSpreadsheet()`). | `UrlFetchApp`, `GmailApp`, `DriveApp`, acceso a otros libros, `LockService.getScriptLock()`. |
 | **`AuthMode.FULL`** | Disparadores instalables (`ScriptApp.newTrigger`) o ejecuciones desde menús de usuario. | **Acceso total** a todos los servicios y APIs autorizados por la cuenta instaladora. | Ninguno (sujeto a las cuotas normales del usuario). |
 

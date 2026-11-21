@@ -1,0 +1,30 @@
+Google Apps Script Enterprise Agent Skills (ES)
+Copyright 2026 Dayana Vega (@Dayveg)
+
+[ESPAÑOL]
+Este producto incluye especificaciones de arquitectura, documentación técnica (`SKILL.md`, `references/`)
+y herramientas/código ejecutable (`scripts/`, `tests/`, `assets/` y bloques de código) desarrollados por:
+  Dayana Vega (https://github.com/Dayveg)
+  Repositorio oficial: https://github.com/Dayveg/google-apps-script-agent-skills-es
+
+Esquema de Licenciamiento Dual:
+- Documentación y especificaciones (`SKILL.md`, `references/`, `README.md`): Creative Commons Attribution 4.0 International (CC BY 4.0) — ver archivo LICENSE (Inglés y Español).
+- Código ejecutable, CLI, plantillas y fragmentos de código (`scripts/`, `tests/`, `assets/` y snippets): Apache License, Version 2.0 — ver archivo LICENSE-APACHE (Inglés y Español).
+
+Aviso sobre Marcas Registradas:
+Google, Google Workspace, Google Apps Script, Google Sheets, Google Drive, Gmail y Gemini son marcas comerciales o marcas registradas de Google LLC. Este repositorio es una obra de ingeniería independiente y no está afiliado, patrocinado ni respaldado oficialmente por Google LLC.
+
+--------------------------------------------------------------------------------
+
+[ENGLISH]
+This product includes architectural specifications, technical documentation (`SKILL.md`, `references/`)
+and executable tools/code (`scripts/`, `tests/`, `assets/`, and code snippets) developed by:
+  Dayana Vega (https://github.com/Dayveg)
+  Official repository: https://github.com/Dayveg/google-apps-script-agent-skills-es
+
+Dual Licensing Scheme:
+- Documentation and specifications (`SKILL.md`, `references/`, `README.md`): Creative Commons Attribution 4.0 International (CC BY 4.0) — see LICENSE file (English and Spanish).
+- Executable code, CLI, templates, and code snippets (`scripts/`, `tests/`, `assets/`, and snippets): Apache License, Version 2.0 — see LICENSE-APACHE file (English and Spanish).
+
+Trademark Disclaimer:
+Google, Google Workspace, Google Apps Script, Google Sheets, Google Drive, Gmail, and Gemini are trademarks or registered trademarks of Google LLC. This repository is an independent engineering work and is not affiliated with, sponsored by, or officially endorsed by Google LLC.

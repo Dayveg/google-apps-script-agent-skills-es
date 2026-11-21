@@ -1,0 +1,8 @@
+{
+  "name": "google-apps-script-agent-skills-es",
+  "description": "Catálogo de skills y estándares de arquitectura enterprise para agentes de IA sobre Google Apps Script (GAS) en español.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dayana Vega (@Dayveg)"
+  }
+}

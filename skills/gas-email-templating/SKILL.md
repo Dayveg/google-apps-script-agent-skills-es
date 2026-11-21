@@ -3,6 +3,8 @@ name: gas-email-templating
 description: >-
   Envío de correos desde Apps Script: plantillas HtmlService, MailApp vs GmailApp, escape de contenido,
   control de cuotas diarias, redirección segura en ambientes de desarrollo y reglas de entregabilidad.
+  Usar cuando: se envíen notificaciones o correos HTML con MailApp/GmailApp desde Google Apps Script.
+  NO usar cuando: se envíen correos mediante SendGrid, Nodemailer o SMTP fuera de GAS.
 ---
 
 # Plantillas y Envío de Correos (`gas-email-templating`)
@@ -33,7 +35,7 @@ Cuota diaria oficial de destinatarios: **100/día** en cuentas de consumidor (`@
     <p>Respetado(a) <?= destinatario ?>,</p>
     <p><?= mensaje ?></p>
     <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
-      <? for (var i = 0; i < filas.length; i++) { ?>
+      <? for (let i = 0; i < filas.length; i++) { ?>
         <tr><td><?= filas[i].campo ?></td><td><?= filas[i].valor ?></td></tr>
       <? } ?>
     </table>

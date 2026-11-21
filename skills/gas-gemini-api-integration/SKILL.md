@@ -3,6 +3,8 @@ name: gas-gemini-api-integration
 description: >-
   Integración de la Gemini API en Google Apps Script mediante UrlFetchApp: autenticación por cabecera,
   salida JSON estructurada con responseSchema, reintentos, manejo de cuotas y buenas prácticas de seguridad.
+  Usar cuando: se consuma la API REST de Gemini desde Google Apps Script con UrlFetchApp.
+  NO usar cuando: se use el SDK oficial de Gemini en Python, TypeScript/Node.js o Vertex AI fuera de GAS.
 ---
 
 # Integración de Gemini API en Apps Script (`gas-gemini-api-integration`)

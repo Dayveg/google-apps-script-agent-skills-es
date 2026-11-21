@@ -1,0 +1,21 @@
+{
+  "name": "dayveg-gas-skills",
+  "interface": {
+    "displayName": "Google Apps Script Enterprise Skills (ES)"
+  },
+  "plugins": [
+    {
+      "name": "google-apps-script-agent-skills-es",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Developer Tools",
+      "version": "1.0.0"
+    }
+  ]
+}

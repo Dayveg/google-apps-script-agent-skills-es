@@ -1,5 +1,6 @@
 # Google Apps Script Enterprise Agent Skills (ES)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY 4.0](https://img.shields.io/badge/Docs_License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Runtime: V8 Modern](https://img.shields.io/badge/Runtime-V8_Modern-blue.svg)](https://developers.google.com/apps-script/guides/v8-runtime)
 [![CI/CD: Clasp + Jest](https://img.shields.io/badge/CI%2FCD-Clasp%20%2B%20Jest-brightgreen.svg)](https://github.com/google/clasp)
 [![Standards: OWASP](https://img.shields.io/badge/Security-OWASP_Sanitization-orange.svg)](https://owasp.org)
@@ -14,6 +15,7 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 
 | Skill | Nombre Canónico | Descripción Técnica Oficial |
 | :--- | :--- | :--- |
+| **00** | [`gas-guidance`](./skills/gas-guidance/SKILL.md) | **Skill enrutadora maestra**: matriz de decisión, cuotas Workspace vs `@gmail.com`, auditoría con `gas-scan` y divulgación. |
 | **01** | [`gas-architecture-v8`](./skills/gas-architecture-v8/SKILL.md) | Topología N-Capas, motor V8 moderno, resolución de Temporal Dead Zone (TDZ), gestión de memoria/GC y contratos inmutables `ServiceResponse`. |
 | **02** | [`gas-advanced-sheets-api`](./skills/gas-advanced-sheets-api/SKILL.md) | Sheets API v4 (Servicio Avanzado), operaciones `batchGet`/`batchUpdate` masivas, formato con `GridRange` y backoff exponencial con jitter. |
 | **03** | [`gas-advanced-drive-api`](./skills/gas-advanced-drive-api/SKILL.md) | Drive API v3 (Servicio Avanzado), soporte completo de Unidades Compartidas (*Shared Drives*), paginación, carga multipart y proyección `fields`. |
@@ -31,6 +33,11 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 | **15** | [`gas-maintenance-auditor`](./skills/gas-maintenance-auditor/SKILL.md) | Auditoría programada: duplicados, errores de fórmula, filas fantasma y alertas de SLA sin borrado a ciegas. |
 | **16** | [`gas-gemini-api-integration`](./skills/gas-gemini-api-integration/SKILL.md) | Gemini API desde Apps Script: autenticación por cabecera, salida JSON estructurada, reintentos y seguridad. |
 | **17** | [`gas-document-ocr-processing`](./skills/gas-document-ocr-processing/SKILL.md) | OCR con Drive API v3, extracción de campos validada y limpieza de temporales. |
+| **18** | [`gas-workspace-addons`](./skills/gas-workspace-addons/SKILL.md) | Google Workspace Add-ons con `CardService`, manifiesto `addOns`, triggers por host y `urlFetchWhitelist`. |
+| **19** | [`gas-sheets-custom-functions`](./skills/gas-sheets-custom-functions/SKILL.md) | Funciones personalizadas en Google Sheets (`@customfunction`), matrices 2D y `AuthMode.CUSTOM_FUNCTION`. |
+| **20** | [`gas-jdbc-cloudsql`](./skills/gas-jdbc-cloudsql/SKILL.md) | Conectividad segura a Cloud SQL / SQL externo con `Jdbc`, `prepareStatement` y cierre en `finally`. |
+| **21** | [`gas-docs-slides-pdf-generation`](./skills/gas-docs-slides-pdf-generation/SKILL.md) | Generación de documentos/presentaciones desde plantillas (`DocumentApp`/`SlidesApp`), *Document Tabs* y PDF. |
+| **22** | [`gas-forms-automation`](./skills/gas-forms-automation/SKILL.md) | Automatización de Google Forms (`FormApp`) y procesamiento transaccional de `onFormSubmit` (`e.namedValues`). |
 
 ---
 
@@ -52,6 +59,22 @@ Este marco de referencia sintetiza las mejores prácticas de la documentación o
 ---
 
 ## Cómo Utilizar estos Skills en tu Agente de IA
+
+### Auditoría Estática Automática (`gas-scan`)
+El repositorio incluye un analizador estático sin dependencias externas para detectar antipatrones GAS (`var`, `getValue()`/`setValue()` en bucles, `<?!=` sin escapar, `waitLock` sin `finally`, scopes amplios, credenciales quemadas y `runtimeVersion` distinto de `V8`):
+
+```bash
+node scripts/gas-scan.mjs <ruta-proyecto> --json
+```
+
+Para ejecutar las pruebas unitarias y validar la integridad del catálogo:
+
+```bash
+npm test
+npm run validate
+```
+
+Consulta [`evals/evals.json`](./evals/evals.json) para los casos de evaluación de enrutamiento y cumplimiento.
 
 ### Instalación Rápida (Universal — `skills.sh`)
 Compatible con Antigravity, Claude Code, Cursor, Codex y otros agentes compatibles con `SKILL.md`:
@@ -82,16 +105,23 @@ las directrices declarativas ubicadas en:
 
 ---
 
-## Licencia y Atribución
+## Licencia y Atribución (Esquema Dual: `CC-BY-4.0 AND Apache-2.0`)
 
-Este repositorio se distribuye bajo la licencia **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**.
+Este repositorio utiliza un **esquema de licenciamiento dual** (estándar en repositorios técnico-documentales como MDN y Google Developers):
+
+1. **Documentación, Especificaciones y Guías (`skills/**/SKILL.md`, `references/`, `README.md`)**:
+   * Distribuidas bajo **Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](./LICENSE))**.
+2. **Código Ejecutable, CLI, Plantillas y Snippets (`scripts/`, `tests/`, `assets/` y bloques de código)**:
+   * Distribuidos bajo **Apache License 2.0 ([Apache-2.0](./LICENSE-APACHE))** con archivo **[`NOTICE`](./NOTICE)** de atribución.
 
 [![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
 
 ### Términos de Atribución Obligatoria
-Si utilizas, adaptas, bifurcas o integras estos skills en tus agentes de IA o proyectos de software, **debes otorgar crédito a la autora original**:
+Si utilizas, adaptas, bifurcas o integras estos skills o herramientas en tus agentes de IA o proyectos de software, **debes conservar el archivo [`NOTICE`](./NOTICE) y otorgar crédito a la autora original**:
 * **Autora**: Dayana Vega ([@Dayveg](https://github.com/Dayveg))
 * **Repositorio Original**: [https://github.com/Dayveg/google-apps-script-agent-skills-es](https://github.com/Dayveg/google-apps-script-agent-skills-es)
-* **Licencia**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
+* **Licencias**: [CC BY 4.0](./LICENSE) (Documentación) y [Apache-2.0](./LICENSE-APACHE) (Código)
 
 Para citación formal en investigaciones, publicaciones o repositorios, consulta el archivo [`CITATION.cff`](./CITATION.cff).
+
+> **Aviso de Marcas Registradas**: *Google, Google Workspace, Google Apps Script, Google Sheets, Google Drive, Gmail y Gemini son marcas comerciales o marcas registradas de Google LLC. Este repositorio es un proyecto independiente y no está afiliado, respaldado ni patrocinado oficialmente por Google LLC.*

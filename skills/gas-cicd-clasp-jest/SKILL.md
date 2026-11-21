@@ -3,11 +3,15 @@ name: gas-cicd-clasp-jest
 description: >-
   Integración Continua y Despliegue Continuo (CI/CD) para Google Apps Script mediante
   @google/clasp, suites de prueba con Jest, emuladores (Mocks) y GitHub Actions.
+  Usar cuando: se configure desarrollo local con clasp, pruebas unitarias con Jest/mocks GAS o pipelines CI/CD para Apps Script.
+  NO usar cuando: el proyecto no use Google Apps Script ni @google/clasp.
 ---
 
 # CI/CD y Desarrollo Local con Clasp y Jest (`gas-cicd-clasp-jest`)
 
 Esta habilidad estandariza el flujo de trabajo profesional para desarrollar, testear en local y desplegar soluciones de Google Apps Script utilizando **`@google/clasp`** y **`Jest`**.
+
+> Plantillas listas para copiar disponibles en [`assets/gasMockHarness.js`](./assets/gasMockHarness.js), [`assets/.claspignore`](./assets/.claspignore) y [`assets/gas-ci.yml`](./assets/gas-ci.yml).
 
 ---
 

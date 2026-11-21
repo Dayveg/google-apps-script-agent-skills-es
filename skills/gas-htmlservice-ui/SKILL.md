@@ -3,6 +3,8 @@ name: gas-htmlservice-ui
 description: >-
   Interfaces de usuario en Apps Script con HtmlService: plantillas, include de parciales, diálogos modales
   y barras laterales, comunicación cliente-servidor con google.script.run, límites de serialización y seguridad.
+  Usar cuando: se construyan modales, sidebars o vistas HTML servidas con HtmlService y google.script.run en GAS.
+  NO usar cuando: se desarrolle una SPA independiente (React/Vue/Next.js) fuera de Google Apps Script.
 ---
 
 # Interfaces con HtmlService (`gas-htmlservice-ui`)
